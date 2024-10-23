@@ -309,7 +309,7 @@ DROP TABLE IF EXISTS `reguladomiciliarias`.`RVD_NO_PUBLICIDAD_DATO` ;
 CREATE TABLE IF NOT EXISTS `reguladomiciliarias`.`RVD_NO_PUBLICIDAD_DATO` (
   `id_no_publicidad_dato` INT NOT NULL,
   `id_subsistema` INT NULL DEFAULT NULL,  
-  `id_cedula` INT NOT NULL DEFAULT NULL,
+  `id_cedula` INT NOT NULL DEFAULT 0,
   `id_cat_no_publicidad_dato` INT NULL DEFAULT NULL,
   `id_estatus` INT NULL DEFAULT NULL COMMENT 'Estatus del registro\n1=activo, 0=inactivo (borrado lógico)',    
   PRIMARY KEY (`id_no_publicidad_dato`))
@@ -324,7 +324,7 @@ DROP TABLE IF EXISTS `reguladomiciliarias`.`RVD_NO_PUBLICIDAD_DOCUMENTO` ;
 CREATE TABLE IF NOT EXISTS `reguladomiciliarias`.`RVD_NO_PUBLICIDAD_DOCUMENTO` (
   `id_no_publicidad_documento` INT NOT NULL,
   `id_subsistema` INT NULL DEFAULT NULL,  
-  `id_cedula` INT NOT NULL DEFAULT NULL,
+  `id_cedula` INT NOT NULL DEFAULT 0,
   `url_documento` VARCHAR(400) NULL DEFAULT NULL,
   `id_estatus` INT NULL DEFAULT NULL COMMENT 'Estatus del registro\n1=activo, 0=inactivo (borrado lógico)',    
   PRIMARY KEY (`id_no_publicidad_documento`))
@@ -416,7 +416,7 @@ DROP TABLE IF EXISTS `reguladomiciliarias`.`RVD_SITUACION_EMERGENCIA` ;
 CREATE TABLE IF NOT EXISTS `reguladomiciliarias`.`RVD_SITUACION_EMERGENCIA` (
   `id_situacion_emergencia` INT NOT NULL,
   `id_subsistema` INT NULL DEFAULT NULL,  
-  `id_cedula` INT NOT NULL DEFAULT NULL,
+  `id_cedula` INT NOT NULL DEFAULT 0,
   `justificacion` VARCHAR(4000) NULL DEFAULT NULL,
   `url_documento` VARCHAR(400) NULL DEFAULT NULL,
   `id_estatus` INT NULL DEFAULT NULL COMMENT 'Estatus del registro\n1=activo, 0=inactivo (borrado lógico)',    
@@ -1430,7 +1430,7 @@ DROP TABLE IF EXISTS `reguladomiciliarias`.`CNMR_CEDULA_PENDIENTE`;
 CREATE TABLE IF NOT EXISTS `reguladomiciliarias`.`CNMR_CEDULA_PENDIENTE` (
 	`pk_cnmr_cedula_pendiente` INT NOT NULL AUTO_INCREMENT,
 	`id_subsistema` INT NULL DEFAULT NULL, 
-	`id_cedula` INT NULL DEFAULT NULL, 
+	`id_cedula` INT NULL DEFAULT 0, 
 	`folio_homoclave` VARCHAR(100) NULL DEFAULT NULL,
 	`descripcion_error` VARCHAR(1000) NULL DEFAULT NULL,	
 	`estatus_pendiente` INT NULL DEFAULT NULL, 
