@@ -23,15 +23,14 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema reguladomiciliarias
 -- -----------------------------------------------------
 -- CREATE SCHEMA IF NOT EXISTS `reguladomiciliarias` DEFAULT CHARACTER SET utf8 ;
-USE `reguladomiciliarias` ;
-
+ USE `reguladomiciliarias`;
 
 -- -----------------------------------------------------
 -- Table `reguladomiciliarias`.`RVD_AUTORIDAD_ORDENA_INSPECCION`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `reguladomiciliarias`.`RVD_AUTORIDAD_ORDENA_INSPECCION` ;
+DROP TABLE IF EXISTS `reguladomiciliarias`.`RVD_AUTORIDAD_ORDENA_INSPECCION`;
 
-CREATE TABLE IF NOT EXISTS `reguladomiciliarias`.`RVD_AUTORIDAD_ORDENA_INSPECCION` (
+CREATE TABLE IF NOT EXISTS `reguladomiciliarias`.`RVD_AUTORIDAD_ORDENA_INSPECCION`(
   `id_autoridad_ordena_inspeccion` INT NOT NULL,
   `nombre_autoridad` VARCHAR(400) NULL DEFAULT NULL,
   `horario_atencion` VARCHAR(400) NULL DEFAULT NULL,
@@ -411,9 +410,9 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `reguladomiciliarias`.`RVD_SITUACION_EMERGENCIA`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `reguladomiciliarias`.`RVD_SITUACION_EMERGENCIA` ;
+DROP TABLE IF EXISTS `reguladomiciliarias`.`RVD_SITUACION_EMERGENCIA`;
 
-CREATE TABLE IF NOT EXISTS `reguladomiciliarias`.`RVD_SITUACION_EMERGENCIA` (
+CREATE TABLE IF NOT EXISTS reguladomiciliarias.RVD_SITUACION_EMERGENCIA(
   `id_situacion_emergencia` INT NOT NULL,
   `id_subsistema` INT NULL DEFAULT NULL,  
   `id_cedula` INT NOT NULL DEFAULT 0,
@@ -579,7 +578,7 @@ DROP TABLE IF EXISTS `reguladomiciliarias`.`RVD_CAT_GENERAL` ;
 CREATE TABLE IF NOT EXISTS `reguladomiciliarias`.`RVD_CAT_GENERAL` (
   `id_cat_general` INT NOT NULL,
   `id_cat_padre` INT NULL DEFAULT NULL,
-  `id_cat_detalle` INT NULL DEFAULT NULL COMMENT 'campo para Actividad Economica, campo para encuesta de satisfacción 0=pregunta cerrada, 1=pregunta abierta';,  
+  `id_cat_detalle` INT NULL DEFAULT NULL COMMENT 'campo para Actividad Economica, campo para encuesta de satisfacción 0=pregunta cerrada, 1=pregunta abierta',  
   `orden` INT NULL DEFAULT NULL,
   `descripcion_detalle` VARCHAR(1000) NULL DEFAULT NULL,
   `id_usuario_alta` INT NULL DEFAULT NULL,
@@ -1449,3 +1448,7 @@ CREATE TABLE `reguladomiciliarias`.`RVD_ENDPOINT_SUBSIST` (
   `estatus` int NULL DEFAULT NULL,
   PRIMARY KEY (`id_endpoint_subsist`))
 ENGINE=InnoDB ;
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
