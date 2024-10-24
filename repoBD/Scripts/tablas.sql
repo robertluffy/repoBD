@@ -1452,3 +1452,399 @@ ENGINE=InnoDB ;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+/* CREACIÓN DE LLAVES FORANEAS */
+
+
+ALTER TABLE `reguladomiciliarias`.`RVD_BITACORA_MOVIMIENTO` ADD CONSTRAINT `fk_bitacora_movimiento_usuario` 
+	FOREIGN KEY (`id_usuario`) 
+	REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_BITACORA_MOVIMIENTO` ADD CONSTRAINT `fk_bitacora_movimiento_cat_general_accion_realizada` 
+	FOREIGN KEY (`id_cat_accion_realizada`) 
+	REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_DERECHO_SUJETO` ADD CONSTRAINT `fk_derecho_sujeto_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_DIRIGIDO_A`  ADD CONSTRAINT `fk_dirigido_a_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_DIRIGIDO_A` ADD CONSTRAINT `fk_dirigido_a_cat_general_digido_a` 
+	FOREIGN KEY (`id_cat_dirigido_a`) 
+	REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_FACULTAD_INSPECTOR`  ADD CONSTRAINT `fk_facultad_inspector_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_FORMATO_INSPECCION`  ADD CONSTRAINT `fk_formato_inspeccion_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_FUNDAMENTO_JURIDICO`  ADD CONSTRAINT `fk_fundamento_juridico_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_FUNDAMENTO_JURIDICO`  ADD CONSTRAINT `fk_fundamento_juridico_regulacion`
+    FOREIGN KEY (`id_regulacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_REGULACION` (`id_regulacion`);	
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_FUNDAMENTO_JURIDICO` ADD CONSTRAINT `fk_tipo_fundamento_juridico_cat_general_tipo_fundamento` 
+	FOREIGN KEY (`id_cat_tipo_fundamento_juridico`) 
+	REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`); 
+
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION` ADD CONSTRAINT `fk_inspeccion_cat_general_periodicidad` 
+	FOREIGN KEY (`id_cat_periodicidad`) 
+	REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION` ADD CONSTRAINT `fk_autoridad_ordena_inspeccion_inspeccion` 
+	FOREIGN KEY (`id_autoridad_ordena_inspeccion`) 
+	REFERENCES `reguladomiciliarias`.`RVD_AUTORIDAD_ORDENA_INSPECCION` (`id_autoridad_ordena_inspeccion`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION` ADD CONSTRAINT `fk_inspeccion_cat_general_tamanio_empresa` 
+	FOREIGN KEY (`id_cat_tamanio_empresa_inspeccion`) 
+	REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION` ADD CONSTRAINT `fk_inspeccion_cat_general_estatus_cedula` 
+	FOREIGN KEY (`id_cat_estatus_cedula`) 
+	REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);		
+
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION_DONDE`  ADD CONSTRAINT `fk_inspeccion_donde_inspeccion`
+	FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION_DONDE`  ADD CONSTRAINT `fk_inspeccion_donde_cat_general_inspeccion_donde`
+	FOREIGN KEY (`id_cat_inspeccion_donde`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION_ES`  ADD CONSTRAINT `fk_inspeccion_es_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION_ES`  ADD CONSTRAINT `fk_inspeccion_es_cat_general_inspeccion_es`
+    FOREIGN KEY (`id_cat_inspeccion_es`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION_MOTIVO` ADD CONSTRAINT `fk_inspeccion_motivo_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION_MOTIVO` ADD CONSTRAINT `fk_inspeccion_motivo_cat_general_motivo_inspeccion`
+    FOREIGN KEY (`id_cat_motivo_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION_MOTIVO_TRAMITE` ADD CONSTRAINT `fk_inspeccion_motivo_tramite_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION_RESOLUCION_TRAMITE`  ADD CONSTRAINT `fk_inspeccion_resolucion_tramite_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION_TIPO`  ADD CONSTRAINT `fk_inspeccion_tipo_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION_TIPO`  ADD CONSTRAINT `fk_inspeccion_tipo_cat_general_tipo_inspeccion`
+    FOREIGN KEY (`id_cat_tipo_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION_TRAMITE`  ADD CONSTRAINT `fk_inspeccion_tramite_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION_VERIFICADOR`  ADD CONSTRAINT `fk_inspeccion_verificador_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION_VERIFICADOR`  ADD CONSTRAINT `fk_inspeccion_verificador_verificador`
+    FOREIGN KEY (`id_verificador`)
+    REFERENCES `reguladomiciliarias`.`RVD_VERIFICADOR` (`id_verificador`);	
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_NO_PUBLICIDAD_DATO`  ADD CONSTRAINT `fk_no_publicidad_dato_cat_general_no_publicidad`
+    FOREIGN KEY (`id_cat_no_publicidad_dato`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_OBLIGACION_SUJETO`  ADD CONSTRAINT `fk_obligacion_sujeto_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_PASO_INSPECCION`  ADD CONSTRAINT `fk_paso_inspeccion_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_REGULACIONES_DEBE_CUMPLIR_SUJETO`  ADD CONSTRAINT `fk_regulaciones_debe_cumplir_sujeto_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_REQUISITO_DOCUMENTO` ADD CONSTRAINT `fk_requisito_documento_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_SANCION`  ADD CONSTRAINT `fk_sancion_cat_general_sancion`
+    FOREIGN KEY (`id_cat_sancion`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_SANCION`  ADD CONSTRAINT `fk_sancion_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_REGULACION_TRAMITE_INSPECCION`  ADD CONSTRAINT `fk_regulacion_tramite_inspeccion`
+    FOREIGN KEY (`id_regulacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_REGULACION` (`id_regulacion`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_USUARIO_ROL`  ADD CONSTRAINT `fk_usuario_rol_usuario`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_USUARIO_ROL`  ADD CONSTRAINT `fk_usuario_rol_cat_general_rol`
+    FOREIGN KEY (`id_cat_rol`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_VERIFICADOR`  ADD CONSTRAINT `fk_verificador_autoridad_ordena_inspeccion`
+    FOREIGN KEY (`id_unidad_adcripcion`)
+    REFERENCES `reguladomiciliarias`.`RVD_AUTORIDAD_ORDENA_INSPECCION` (`id_autoridad_ordena_inspeccion`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_VERIFICADOR`  ADD CONSTRAINT `fk_verificador_superior_jerarquico`
+    FOREIGN KEY (`id_superior_jerarquico`)
+    REFERENCES `reguladomiciliarias`.`RVD_SUPERIOR_JERARQUICO` (`id_superior_jerarquico`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_VERIFICADOR`  ADD CONSTRAINT `fk_verificador_cat_general_estatus_cedula`
+    FOREIGN KEY (`id_cat_estatus_cedula`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_ACTIVIDAD_ECONOMICA`  ADD CONSTRAINT `fk_actividad_economica_regulacion`
+    FOREIGN KEY (`id_regulacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_REGULACION` (`id_regulacion`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_ACTIVIDAD_ECONOMICA`  ADD CONSTRAINT `fk_actividad_economica_cat_general_sector`
+    FOREIGN KEY (`id_sector`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_ACTIVIDAD_ECONOMICA`  ADD CONSTRAINT `fk_actividad_economica_cat_general_subsector`
+    FOREIGN KEY (`id_subsector`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_ACTIVIDAD_ECONOMICA`  ADD CONSTRAINT `fk_actividad_economica_cat_general_rama`
+    FOREIGN KEY (`id_rama`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_ACTIVIDAD_ECONOMICA`  ADD CONSTRAINT `fk_actividad_economica_cat_general_subrama`
+    FOREIGN KEY (`id_subrama`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_ACTIVIDAD_ECONOMICA`  ADD CONSTRAINT `fk_actividad_economica_cat_general_clase`
+    FOREIGN KEY (`id_clase`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_ACTIVIDAD_ECONOMICA`  ADD CONSTRAINT `fk_actividad_economica_usuario_alta`
+    FOREIGN KEY (`id_usuario_alta`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_ACTIVIDAD_ECONOMICA`  ADD CONSTRAINT `fk_actividad_economica_usuario_modificacion`
+    FOREIGN KEY (`id_usuario_modificacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_ACTIVIDAD_ECONOMICA`  ADD CONSTRAINT `fk_actividad_economica_cat_general_estatus`
+    FOREIGN KEY (`id_estatus`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_AUTORIDAD`  ADD CONSTRAINT `fk_autoridad_cat_general_orden_gobierno`
+    FOREIGN KEY (`id_cat_orden_gobierno`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_AUTORIDAD`  ADD CONSTRAINT `fk_autoridad_cat_general_entidad`
+    FOREIGN KEY (`id_cat_entidad`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_AUTORIDAD`  ADD CONSTRAINT `fk_autoridad_cat_general_municipio`
+    FOREIGN KEY (`id_cat_municipio`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_AUTORIDAD`  ADD CONSTRAINT `fk_autoridad_usuario_alta`
+    FOREIGN KEY (`id_usuario_alta`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_AUTORIDAD`  ADD CONSTRAINT `fk_autoridad_usuario_modificacion`
+    FOREIGN KEY (`id_usuario_modificacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_CARRUSEL`  ADD CONSTRAINT `fk_carrusel_cat_general`
+    FOREIGN KEY (`id_cat_tipo_modal`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_CARRUSEL`  ADD CONSTRAINT `fk_carrusel_usuario_alta`
+    FOREIGN KEY (`id_usuario_alta`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_CARRUSEL`  ADD CONSTRAINT `fk_carrusel_usuario_modificacion`
+    FOREIGN KEY (`id_usuario_modificacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_CAT_GENERAL`  ADD CONSTRAINT `fk_cat_general_usuario_alta`
+    FOREIGN KEY (`id_usuario_alta`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_DIAS_INHABILES`  ADD CONSTRAINT `fk_dias_habiles_usuario_alta`
+    FOREIGN KEY (`id_usuario_alta`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_DIAS_INHABILES`  ADD CONSTRAINT `fk_dias_habiles_usuario_modificacion`
+    FOREIGN KEY (`id_usuario_modificacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);		
+
+ALTER TABLE `reguladomiciliarias`.`RVD_DOCUMENTO`  ADD CONSTRAINT `fk_documento_cat_general_doc_subsis`
+    FOREIGN KEY (`id_cat_doc_subsis`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_DOCUMENTO`  ADD CONSTRAINT `fk_documento_cat_general_tipo_archivo`
+    FOREIGN KEY (`id_cat_tipo_archivo`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_DOCUMENTO`  ADD CONSTRAINT `fk_documento_usuario_alta`
+    FOREIGN KEY (`id_usuario_alta`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_DOCUMENTO`  ADD CONSTRAINT `fk_documento_usuario_modificacion`
+    FOREIGN KEY (`id_usuario_modificacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_ENCUESTA_SATISFACCION`  ADD CONSTRAINT `fk_encuesta_satisfaccion_cat_general`
+    FOREIGN KEY (`id_cat_encuesta`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_INDICE_REGULACION`  ADD CONSTRAINT `fk_indice_regulacion_regulacion`
+    FOREIGN KEY (`id_regulacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_REGULACION` (`id_regulacion`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_INDICE_REGULACION`  ADD CONSTRAINT `fk_indice_regulacion_usuario_alta`
+    FOREIGN KEY (`id_usuario_alta`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_INDICE_REGULACION`  ADD CONSTRAINT `fk_indice_regulacion_usuario_modificacion`
+    FOREIGN KEY (`id_usuario_modificacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);		
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_PREGUNTAS_FRECUENTES`  ADD CONSTRAINT `fk_preguntas_frecuentes_usuario_alta`
+    FOREIGN KEY (`id_usuario_alta`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_PREGUNTAS_FRECUENTES`  ADD CONSTRAINT `fk_preguntas_frecuentes_usuario_modificacion`
+    FOREIGN KEY (`id_usuario_modificacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);	
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_REG_AUTO_CUMPLE`  ADD CONSTRAINT `fk_reg_auto_cumple_regulacion`
+    FOREIGN KEY (`id_regulacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_REGULACION` (`id_regulacion`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_REG_AUTO_CUMPLE`  ADD CONSTRAINT `fk_reg_auto_cumple_autoridad`
+    FOREIGN KEY (`id_autoridad_cumple`)
+    REFERENCES `reguladomiciliarias`.`RVD_AUTORIDAD` (`id_autoridad`); 
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_REG_AUTO_CUMPLE`  ADD CONSTRAINT `fk_reg_auto_cumple_usuario_alta`
+    FOREIGN KEY (`id_usuario_alta`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_REG_AUTO_CUMPLE`  ADD CONSTRAINT `fk_reg_auto_cumple_usuario_modificacion`
+    FOREIGN KEY (`id_usuario_modificacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);	
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_REG_AUTO_EMITE`  ADD CONSTRAINT `fk_reg_auto_emite_regulacion`
+    FOREIGN KEY (`id_regulacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_REGULACION` (`id_regulacion`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_REG_AUTO_EMITE`  ADD CONSTRAINT `fk_reg_auto_emite_autoridad`
+    FOREIGN KEY (`id_autoridad_emite`)
+    REFERENCES `reguladomiciliarias`.`RVD_AUTORIDAD` (`id_autoridad`); 
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_REG_AUTO_EMITE`  ADD CONSTRAINT `fk_reg_auto_emite_usuario_alta`
+    FOREIGN KEY (`id_usuario_alta`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_REG_AUTO_EMITE`  ADD CONSTRAINT `fk_reg_auto_emite_usuario_modificacion`
+    FOREIGN KEY (`id_usuario_modificacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_REG_VINCULADA`  ADD CONSTRAINT `fk_reg_vinculada_regulacion`
+    FOREIGN KEY (`id_regulacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_REGULACION` (`id_regulacion`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_REG_VINCULADA`  ADD CONSTRAINT `fk_reg_vinculada_regulacion_padre`
+    FOREIGN KEY (`id_regulacion_padre`)
+    REFERENCES `reguladomiciliarias`.`RVD_REGULACION` (`id_regulacion`);	
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_REG_VINCULADA`  ADD CONSTRAINT `fk_reg_vinculada_usuario_alta`
+    FOREIGN KEY (`id_usuario_alta`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_REG_VINCULADA`  ADD CONSTRAINT `fk_reg_vinculada_usuario_modificacion`
+    FOREIGN KEY (`id_usuario_modificacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_REGULACION`  ADD CONSTRAINT `fk_regulacion_cat_general_ambito_ordenamiento`
+    FOREIGN KEY (`id_cat_ambito_ordenamiento`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_REGULACION`  ADD CONSTRAINT `fk_regulacion_cat_general_tipo_ordenamiento`
+    FOREIGN KEY (`id_cat_tipo_ordenamiento`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_REGULACION`  ADD CONSTRAINT `fk_regulacion_usuario_publicacion`
+    FOREIGN KEY (`id_usuario_publicacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_REGULACION`  ADD CONSTRAINT `fk_regulacion_cat_general_tipo_baja`
+    FOREIGN KEY (`id_cat_tipo_baja`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);
+
+ALTER TABLE `reguladomiciliarias`.`RVD_REGULACION`  ADD CONSTRAINT `fk_regulacion_usuario_alta`
+    FOREIGN KEY (`id_usuario_alta`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_REGULACION`  ADD CONSTRAINT `fk_regulacion_usuario_modificacion`
+    FOREIGN KEY (`id_usuario_modificacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);	
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_REGULACION`  ADD CONSTRAINT `fk_regulacion_cat_general_estatus_cedula`
+    FOREIGN KEY (`id_cat_estatus_cedula`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_REGULACION_MATERIA`  ADD CONSTRAINT `fk_regulacion_materia_regulacion`
+    FOREIGN KEY (`id_regulacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_REGULACION` (`id_regulacion`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_REGULACION_MATERIA`  ADD CONSTRAINT `fk_regulacion_materia_cat_general_materia`
+    FOREIGN KEY (`id_cat_materia`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+
+ALTER TABLE `reguladomiciliarias`.`RVD_REGULACION_MATERIA`  ADD CONSTRAINT `fk_regulacion_materia_usuario_alta`
+    FOREIGN KEY (`id_usuario_alta`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_REGULACION_MATERIA`  ADD CONSTRAINT `fk_regulacion_materia_usuario_modificacion`
+    FOREIGN KEY (`id_usuario_modificacion`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);		
+
+ALTER TABLE `reguladomiciliarias`.`RVD_SESIONES`  ADD CONSTRAINT `fk_sesiones_usuario`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `reguladomiciliarias`.`RVD_USUARIO` (`id_usuario`);	
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_USUARIO`  ADD CONSTRAINT `fk_usuario_cat_general_unidad_adm`
+    FOREIGN KEY (`id_cat_unidad_admin`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_INSPECCION_ESTADISTICA`  ADD CONSTRAINT `fk_estadistica_inspeccion`
+    FOREIGN KEY (`id_inspeccion`)
+    REFERENCES `reguladomiciliarias`.`RVD_INSPECCION` (`id_inspeccion`);		
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_ENDPOINT_SUBSIST` ADD CONSTRAINT `fk_endpointsubsist_cat_general`
+    FOREIGN KEY (`id_subsistema`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
+	
+ALTER TABLE `reguladomiciliarias`.`RVD_ENDPOINT_SUBSIST` ADD CONSTRAINT `fk_endpointtipoambiente_cat_general`
+    FOREIGN KEY (`id_tipo_ambiente`)
+    REFERENCES `reguladomiciliarias`.`RVD_CAT_GENERAL` (`id_cat_general`);	
